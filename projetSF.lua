@@ -5,15 +5,18 @@
 
 -- Mode Debug
 debug = false
+debugLife = false
 
 -- Player
 spritePlayer = 1
 playerX = 30
 playerY = 70
 talkPlayer = false
-lifePlayer = 100
+lifePlayer = 1500
 namePlayer = "Player"
 damagePlayer = 0
+damageSpellPlayer = 0
+showDomagePlayer = {}
 
 -- Ennemy
 spriteEnnemy = 82
@@ -21,9 +24,11 @@ EspriteAction = 149
 ennemyX = 200
 ennemyY = 70
 talkEnnemy = false
-lifeEnnemy = 3000
+lifeEnnemy = 1500
 nameEnnemy = "Ennemy"
 damageEnnemy = 0
+damageSpellEnnemy = 0
+
 
 -- timing
 startTime = time()
@@ -77,7 +82,9 @@ currentSpellASpriteIndex = 1
 spellAAnimTimer = 0
 spellAAnimSpeed = 200  -- Vitesse de l'animation du sort A
 
-
+-- List DPS
+showDamagePlayer = {}
+showDamageEnnemy = {}
 
 function TIC()
 
@@ -107,8 +114,62 @@ cls()
             spritePlayer = spritePlayer + 1
             if moveAA == true and
             spritePlayer == 2 then
-                damageEnnemy = damageEnnemy + 5
-            elseif moveAA == true and 
+                damageSpellPlayer = 10 
+                damageEnnemy = damageEnnemy + damageSpellPlayer
+                local newDamage = {
+                    x = 134,
+                    y = 35,
+                    value = damageSpellPlayer,
+                    color = 4
+                }
+                table.insert(showDamagePlayer, newDamage)
+            elseif moveA == true and
+            spritePlayer == 6 then
+                damageSpellPlayer = 30 
+                damageEnnemy = damageEnnemy + damageSpellPlayer
+                local newDamage = {
+                    x = 134,
+                    y = 35,
+                    value = damageSpellPlayer,
+                    color = 4
+                }
+                table.insert(showDamagePlayer, newDamage)
+            elseif moveZ == true and
+            spritePlayer == 22 then
+                damageSpellPlayer = 50
+                damageEnnemy = damageEnnemy + damageSpellPlayer
+                local newDamage = {
+                    x = 134,
+                    y = 35,
+                    value = damageSpellPlayer,
+                    color = 4
+                }
+                table.insert(showDamagePlayer, newDamage)
+            elseif moveE == true and
+            spritePlayer == 38 then
+                damageSpellPlayer = 80 
+                damageEnnemy = damageEnnemy + damageSpellPlayer
+                local newDamage = {
+                    x = 134,
+                    y = 35,
+                    value = damageSpellPlayer,
+                    color = 4
+                }
+                table.insert(showDamagePlayer, newDamage)
+            elseif moveR == true and
+            spritePlayer == 54 then
+                damageSpellPlayer = 150
+                damageEnnemy = damageEnnemy + damageSpellPlayer
+                local newDamage = {
+                    x = 134,
+                    y = 35,
+                    value = damageSpellPlayer,
+                    color = 4
+                }
+                table.insert(showDamagePlayer, newDamage)
+            end
+            
+            if moveAA == true and 
             spritePlayer > 2 then
                 spritePlayer = 1
                 spriteAction = 69
@@ -159,8 +220,62 @@ cls()
             spriteEnnemy = spriteEnnemy + 1 
             if EmoveAA == true and
             spriteEnnemy == 82 then
-                damagePlayer = damagePlayer + 5
-            elseif EmoveAA == true and
+                damageSpellEnnemy = 10 
+                damagePlayer = damagePlayer + damageSpellEnnemy
+                local newDamage = {
+                    x = 96,
+                    y = 35,
+                    value = damageSpellEnnemy,
+                    color = 4
+                }
+                table.insert(showDamageEnnemy, newDamage)
+            elseif EmoveA == true and
+            spriteEnnemy == 86 then
+                damageSpellEnnemy = 30 
+                damagePlayer = damagePlayer + damageSpellEnnemy
+                local newDamage = {
+                    x = 96,
+                    y = 35,
+                    value = damageSpellEnnemy,
+                    color = 4
+                }
+                table.insert(showDamageEnnemy, newDamage)
+            elseif EmoveZ == true and
+            spriteEnnemy == 102 then
+                damageSpellEnnemy = 50 
+                damagePlayer = damagePlayer + damageSpellEnnemy
+                local newDamage = {
+                    x = 96,
+                    y = 35,
+                    value = damageSpellEnnemy,
+                    color = 4
+                }
+                table.insert(showDamageEnnemy, newDamage)
+            elseif EmoveE == true and
+            spriteEnnemy == 118 then
+                damageSpellEnnemy = 70 
+                damagePlayer = damagePlayer + damageSpellEnnemy
+                local newDamage = {
+                    x = 96,
+                    y = 35,
+                    value = damageSpellEnnemy,
+                    color = 4
+                }
+                table.insert(showDamageEnnemy, newDamage)
+            elseif EmoveR == true and
+            spriteEnnemy == 134 then
+                damageSpellEnnemy = 150
+                damagePlayer = damagePlayer + damageSpellEnnemy
+                local newDamage = {
+                    x = 90,
+                    y = 35,
+                    value = damageSpellEnnemy,
+                    color = 4
+                }
+                table.insert(showDamageEnnemy, newDamage)
+            end
+             
+            if EmoveAA == true and
             spriteEnnemy >= 83 then
                 spriteEnnemy = 81
                 EspriteAction = 149
@@ -332,7 +447,6 @@ cls()
         EmoveAA = false
         EmoveLock = true
         talkEnnemy = true
-        damagePlayer = damagePlayer + 10
         spriteEnnemy = 85
         EspriteAction = 85
         
@@ -343,7 +457,6 @@ cls()
         EmoveAA = false
         EmoveLock = true
         talkEnnemy = true
-        damagePlayer = damagePlayer + 20
         spriteEnnemy = 101
         EspriteAction = 101
         
@@ -354,7 +467,6 @@ cls()
         EmoveAA = false
         EmoveLock = true
         talkEnnemy = true
-        damagePlayer = damagePlayer + 30
         spriteEnnemy = 117
         EspriteAction = 117
         
@@ -365,7 +477,6 @@ cls()
         EmoveAA = false
         EmoveLock = true
         talkEnnemy = true
-        damagePlayer = damagePlayer + 40
         spriteEnnemy = 133
         EspriteAction = 133
     end
@@ -373,6 +484,8 @@ cls()
     -- Input Player
     if keyp(16) then
         debug = not debug
+    elseif keyp(15) then
+        debugLife = not debugLife 
     elseif keyp(01) and 
     moveLock == false and
     CooldownA == true then
@@ -380,7 +493,6 @@ cls()
         moveAA = false
         moveA = true
         talkPlayer = true
-        damageEnnemy = damageEnnemy + 10
         spritePlayer = 5
         spriteAction = 5
         secondeSpellA = 3
@@ -392,7 +504,6 @@ cls()
         moveAA = false
         moveZ = true
         talkPlayer = true
-        damageEnnemy = damageEnnemy + 20
         spritePlayer = 21
         spriteAction = 21
         secondeSpellZ = 5
@@ -404,7 +515,6 @@ cls()
         moveAA = false
         moveE = true
         talkPlayer = true
-        damageEnnemy = damageEnnemy + 30
         spritePlayer = 37
         spriteAction = 37
         secondeSpellE = 5
@@ -416,11 +526,34 @@ cls()
         moveAA = false
         moveR = true
         talkPlayer = true
-        damageEnnemy = damageEnnemy + 50
         spritePlayer = 53
         spriteAction = 53
         secondeSpellR = 15
         CooldownR = false
+    end
+    
+    -- Affichage DPS Player
+    for i = #showDamagePlayer, 1, -1 do
+        local damage = showDamagePlayer[i]
+        damage.y = damage.y - 0.3
+        
+        if damage.y < 18 then
+            table.remove(showDamagePlayer, i)
+        else
+            print(damage.value, damage.x, damage.y, damage.color)
+        end
+    end
+    
+    -- Affichage DPS Ennemy
+    for i = #showDamageEnnemy, 1, -1 do
+        local damage = showDamageEnnemy[i]
+        damage.y = damage.y - 0.3
+        
+        if damage.y < 18 then
+            table.remove(showDamageEnnemy, i)
+        else
+            print(damage.value, damage.x, damage.y, damage.color)
+        end
     end
     
     -- Affichage time round
@@ -428,9 +561,11 @@ cls()
     spr(33,122,8)
 
     -- Calcul du pourcentage de vie actuel
-    local currentLifePlayer = lifePlayer - damagePlayer
-    local currentLifeEnnemy = (lifeEnnemy - damageEnnemy) / lifeEnnemy * 100  
-    local lifeXPlayer = lifePlayer - currentLifePlayer
+    local currentLifePlayer = (lifePlayer - damagePlayer) / lifePlayer * 100
+    local currentLifeEnnemy = (lifeEnnemy - damageEnnemy) / lifeEnnemy * 100
+    local playerHP = lifePlayer - damagePlayer
+    local ennemyHP = lifeEnnemy - damageEnnemy
+    local lifeXPlayer = 100 - math.floor(currentLifePlayer)
     local lifecolorPlayer = 7
     local lifecolorEnnemy = 7
     
@@ -463,13 +598,14 @@ cls()
     rect(5, 7, 100+2, 10, 12)  -- Cadre Player
     rect(6, 8, 100, 8, 2)  -- Fond Player
     rect(lifeXPlayer+6, 8, currentLifePlayer, 8, lifecolorPlayer)  -- vie actuelle Player
+    
     print(nameEnnemy,200,0,12)
     rect(134, 7, 100+2, 10, 12)  -- Cadre Ennemy
     rect(135, 8, 100, 8, 2)  -- Fond ENnemy
     rect(135, 8, currentLifeEnnemy, 8, lifecolorEnnemy)  -- vie actuelle Ennemy
-    if debug == true then
-        print(currentLifePlayer.." / "..lifePlayer,10,10,12)
-        print(lifeEnnemy.." HPMAX ".." / "..currentLifeEnnemy.." % ",137,10,12)
+    if debugLife == true then
+        print(math.floor(currentLifePlayer).." % ".."- "..playerHP.." HPMAX ",14,10,12)
+        print(ennemyHP.." HPMAX ".."- "..math.floor(currentLifeEnnemy).." % ",137,10,12)
     end
     
     -- Affichage Sprite
