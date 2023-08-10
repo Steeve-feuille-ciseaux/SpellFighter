@@ -6,25 +6,27 @@
 -- Mode Debug
 debug = false
 debugLife = false
-
+function initGame(pHP1,pHP2)
 -- Player
-spritePlayer = 1
+spritePlayer = 2
+stopSpritePlayer = false
 playerX = 30
 playerY = 70
 talkPlayer = false
-lifePlayer = 1500
+lifePlayer = pHP1
 namePlayer = "Player"
 damagePlayer = 0
 damageSpellPlayer = 0
 showDomagePlayer = {}
 
 -- Ennemy
-spriteEnnemy = 82
+spriteEnnemy = 83
+stopSpriteEnnemy = false
 EspriteAction = 149
 ennemyX = 200
 ennemyY = 70
 talkEnnemy = false
-lifeEnnemy = 1500
+lifeEnnemy = pHP2
 nameEnnemy = "Ennemy"
 damageEnnemy = 0
 damageSpellEnnemy = 0
@@ -86,9 +88,14 @@ spellAAnimSpeed = 200  -- Vitesse de l'animation du sort A
 showDamagePlayer = {}
 showDamageEnnemy = {}
 
+end
+
+initGame(1500,1500)
+
 function TIC()
 
 cls()
+
     local currentTime = time()
     local elapsedTime = currentTime - startTime
     
@@ -111,9 +118,21 @@ cls()
         -- Anime sprite 
         if seconde ~= secondeSprite then
             -- Sprite Player
-            spritePlayer = spritePlayer + 1
+            if stopSpritePlayer == false then
+                spritePlayer = spritePlayer + 1
+            elseif stopSpritePlayer == true then
+                spriteAction = 1
+                spritePlayer = 1
+                moveAA = not false
+                moveA = false
+                moveZ = false
+                moveE = false
+                moveR = false
+                moveLock = true
+            end
+            
             if moveAA == true and
-            spritePlayer == 2 then
+            spritePlayer == 3 then
                 damageSpellPlayer = 10 
                 damageEnnemy = damageEnnemy + damageSpellPlayer
                 local newDamage = {
@@ -170,8 +189,8 @@ cls()
             end
             
             if moveAA == true and 
-            spritePlayer > 2 then
-                spritePlayer = 1
+            spritePlayer > 3 then
+                spritePlayer = 2
                 spriteAction = 69
                 talkPlayer = false
                 moveA = false
@@ -181,7 +200,7 @@ cls()
                 
             elseif moveA == true and
             spritePlayer >= 10 then
-                spritePlayer = 1
+                spritePlayer = 2
                 spriteAction = 69
                 talkPlayer = false
                 moveLock = false
@@ -190,7 +209,7 @@ cls()
                 
             elseif moveZ == true and
             spritePlayer >= 26 then
-                spritePlayer = 1
+                spritePlayer = 2
                 spriteAction = 69
                 talkPlayer = false
                 moveLock = false
@@ -199,7 +218,7 @@ cls()
                 
             elseif moveE == true and
             spritePlayer >= 42 then
-                spritePlayer = 1
+                spritePlayer = 2
                 spriteAction = 69
                 talkPlayer = false
                 moveLock = false
@@ -208,7 +227,7 @@ cls()
                 
             elseif moveR == true and
             spritePlayer >= 58 then
-                spritePlayer = 1
+                spritePlayer = 2
                 spriteAction = 69
                 talkPlayer = false
                 moveLock = false
@@ -217,9 +236,23 @@ cls()
             end 
             
             -- Sprite Ennemy
-            spriteEnnemy = spriteEnnemy + 1 
+            if stopSpriteEnnemy == false then
+                spriteEnnemy = spriteEnnemy + 1 
+            elseif stopSpriteEnnemy == true then
+                secondeEnnemy = 0
+                spriteEnnemy = 81
+                EspriteAction = 81
+                EmoveAI = 0
+                EmoveAA = true
+                EmoveA = false
+                EmoveZ = false
+                EmoveE = false
+                EmoveR = false
+                EmoveLock = false
+            end
+            
             if EmoveAA == true and
-            spriteEnnemy == 82 then
+            spriteEnnemy == 83 then
                 damageSpellEnnemy = 10 
                 damagePlayer = damagePlayer + damageSpellEnnemy
                 local newDamage = {
@@ -276,8 +309,8 @@ cls()
             end
              
             if EmoveAA == true and
-            spriteEnnemy >= 83 then
-                spriteEnnemy = 81
+            spriteEnnemy >= 84 then
+                spriteEnnemy = 82
                 EspriteAction = 149
                 talkEnnemy = false
                 EmoveA = false
@@ -287,7 +320,7 @@ cls()
                 
             elseif EmoveA == true and 
             spriteEnnemy >= 90 then
-                spriteEnnemy = 81
+                spriteEnnemy = 82
                 EspriteAction = 149
                 EmoveAI = 0
                 talkEnnemy = false
@@ -297,7 +330,7 @@ cls()
                 
             elseif EmoveZ == true and 
             spriteEnnemy >= 106 then
-                spriteEnnemy = 81
+                spriteEnnemy = 82
                 EspriteAction = 149
                 EmoveAI = 0
                 talkEnnemy = false
@@ -307,7 +340,7 @@ cls()
                 
             elseif EmoveE == true and 
             spriteEnnemy >= 122 then
-                spriteEnnemy = 81
+                spriteEnnemy = 82
                 EspriteAction = 149
                 EmoveAI = 0
                 talkEnnemy = false
@@ -317,7 +350,7 @@ cls()
                 
             elseif EmoveR == true and 
             spriteEnnemy >= 138 then
-                spriteEnnemy = 81
+                spriteEnnemy = 82
                 EspriteAction = 149
                 EmoveAI = 0
                 talkEnnemy = false
@@ -485,7 +518,10 @@ cls()
     if keyp(16) then
         debug = not debug
     elseif keyp(15) then
-        debugLife = not debugLife 
+        debugLife = not debugLife
+    elseif keyp(09)then
+        stopSpritePlayer = not stopSpritePlayer
+        stopSpriteEnnemy = not stopSpriteEnnemy
     elseif keyp(01) and 
     moveLock == false and
     CooldownA == true then
@@ -579,7 +615,41 @@ cls()
     elseif currentLifePlayer <= 10 and
     currentLifePlayer >= 0 then
         lifecolorPlayer = 3
+    elseif currentLifePlayer <= 1 then
+        -- Afficher un écran jaune
+        rect(0, 0, 240, 136, 13)
+        print("YOU FAIL... Try Again", 100, 60, 12)
+        spritePlayer = 4
+        
+        -- Dessiner les options "oui" et "non"
+        -- Obtenir les coordonnées de la souris
+        local mouseX, mouseY, leftB = mouse()
+        print("Yes", 90, 80, choice == "yes" and 11 or (mouseX >= 90 and mouseX <= 130 and mouseY >= 80 and mouseY <= 90) and 10 or 12)
+        print("No", 150, 80, choice == "no" and 11 or (mouseX >= 150 and mouseX <= 180 and mouseY >= 80 and mouseY <= 90) and 10 or 12)
+        
+        -- Vérifier si le joueur a cliqué sur les options
+        if (leftB or btnp(5)) and mouseX >= 90 and mouseX <= 180 and mouseY >= 80 and mouseY <= 90 then
+            if mouseX >= 90 and mouseX <= 130 then
+                choice = "yes"
+            elseif mouseX >= 150 and mouseX <= 180 then
+                choice = "no"
+            end
+        end
+        
+        -- Si le choix est "oui", réinitialiser currentLife à 20 et réinitialiser le jeu
+        if choice == "yes" then
+            initGame(1500,1500)
+            choice = nil
+            -- Réinitialiser les autres variables du jeu ici
+            -- ...
+elseif choice == "no" then
+    initGame(1500,1500)
+    choice = nil
+        
+        end
     end
+    
+        
     
     -- Lifebar color ennemy
     if currentLifeEnnemy <= 60 and
