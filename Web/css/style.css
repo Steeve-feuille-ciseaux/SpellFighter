@@ -1,0 +1,9 @@
+#game-container {
+    height: 2vh;
+    margin-left: 0px;
+}
+
+canvas {
+    margin-left: 5%;
+    margin-right: 50px;
+}

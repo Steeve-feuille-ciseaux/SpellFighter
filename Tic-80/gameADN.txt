@@ -1,0 +1,34 @@
+Start Game
+Tuto compétence
+Récompense : 1er item = Passif
+Build compétence + equipe item
+
+mode Adventure
+Map des prochain adversaire
+Restriction : no consommable
+intereaction : item provoque la variation de l'ennemy, parfois la fuite
+Récompense = new zone + item où compétence
+
+mode refaire les épreuve - adversaire
+Restriction : paie l'accès en gold
+Récompense = Up compétence
+
+Boutique pour acheter item consommable
+regen up, Cooldown reduce, no effect poison, etc...
+
+Forge pour up Item
+item = passif donc up le passive de l'itemp
+
+mode Arène / Survivor
+Restriction : accessible à certain item
+Enchaine un max ennemy
+Récompense = Gold
+
+End Game
+Finir le mode histoire
+
+End Game + 
+Finir tous les arènes de la map 
+
+End Game 100%
+item up LvMax, compétence up LvMax
