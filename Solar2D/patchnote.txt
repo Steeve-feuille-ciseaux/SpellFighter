@@ -1,3 +1,7 @@
 Proto
 
-v0.01.0 -> Installation
+v0.00.0 -> Installation
+v0.00.1 -> PatchNote
+
+next step : 
+Préparation Sprite
