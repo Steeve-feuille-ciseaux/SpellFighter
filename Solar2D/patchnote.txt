@@ -2,6 +2,7 @@ Proto
 
 v0.00.0 -> Installation
 v0.00.1 -> PatchNote
+v0.00.2 -> Test sprite
 
 next step : 
 Préparation Sprite
