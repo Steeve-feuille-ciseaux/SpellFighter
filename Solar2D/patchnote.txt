@@ -3,6 +3,7 @@ Proto
 v0.00.0 -> Installation
 v0.00.1 -> PatchNote
 v0.00.2 -> Test sprite
+v0.00.3 -> Test All Swordman
 
 next step : 
 Préparation Sprite

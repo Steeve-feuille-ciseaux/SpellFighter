@@ -12,7 +12,7 @@ display.setDefault("minTextureFilter", "nearest")
 -- display.setDefault("background", 0.1, 0.1, 0.1)  -- Gris foncé
 
 -- Charger et afficher l'image
-local monImage = display.newImage("sprite/swordsman/Idle1_Swordsman.png")
+local monImage = display.newImage("sprite/swordsman/Idle/Idle1_Swordsman.png")
 
 -- Centrer l'image à l'écran
 monImage.x = display.contentCenterX
