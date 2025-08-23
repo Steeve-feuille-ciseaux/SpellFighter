@@ -16,13 +16,10 @@ local function onKeyEvent(event)
     if event.phase == "down" then
         if event.keyName == "z" then
             swordsman.Atk1()
-            compteur.reset()
         elseif event.keyName == "e" then
             swordsman.Atk2()
-            compteur.reset()
         elseif event.keyName == "r" then
             swordsman.AtkS()
-            compteur.reset()
         end
     end
     return false

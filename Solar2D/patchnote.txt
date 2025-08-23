@@ -10,6 +10,10 @@ v0.00.6 -> swordsman en module
 v0.00.7 -> Action par touche finalisé
 v0.00.8 -> Compteur AA
 v0.00.9 -> Reset compteur AA après un spell
+v0.01.0 -> Feature Complete : Animation swordsman controller
 
 next step : 
-Préparation Sprite
+Décors
+barre de vie
+barre de patience
+cd spell
