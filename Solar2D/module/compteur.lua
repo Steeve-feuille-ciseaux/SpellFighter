@@ -2,6 +2,10 @@
 
 local compteur = {}
 
+-- Position par défaut
+compteur.compteurX = display.contentCenterX
+compteur.compteurY = 90
+
 local countdownText
 local countdown = 3.0
 local interval = 3.0
@@ -18,19 +22,19 @@ function compteur.start(callback)
     callbackWhenZero = callback
 
     -- Barre de fond (grise)
-    barBackground = display.newRect(display.contentCenterX, 90, barWidth, barHeight)
+    barBackground = display.newRect(compteur.compteurX, compteur.compteurY, barWidth, barHeight)
     barBackground:setFillColor(0.3, 0.3, 0.3)
 
     -- Barre de remplissage (verte)
-    barFill = display.newRect(barBackground.x - barWidth / 2, 90, 0, barHeight)
+    barFill = display.newRect(barBackground.x - barWidth / 2, compteur.compteurY, 0, barHeight)
     barFill.anchorX = 0
-    barFill:setFillColor(0, 0.5, 0) -- couleur de la barre vert foncé
+    barFill:setFillColor(0, 0.5, 0)
 
-    -- Texte par-dessus la barre
+    -- Texte
     countdownText = display.newText({
         text = "AA dans : " .. string.format("%.1f", countdown) .. "s",
-        x = display.contentCenterX,
-        y = 90,
+        x = compteur.compteurX,
+        y = compteur.compteurY,
         font = native.systemFontBold,
         fontSize = 18
     })
@@ -39,11 +43,9 @@ function compteur.start(callback)
     timerRef = timer.performWithDelay(100, function()
         countdown = countdown - 0.1
 
-        -- Mise à jour visuelle de la barre
         local progress = math.min((interval - countdown) / interval, 1)
         barFill.width = barWidth * progress
 
-        -- Mise à jour du texte
         if countdownText then
             if countdown <= 0 then
                 countdownText.text = "AA"
@@ -52,7 +54,6 @@ function compteur.start(callback)
             end
         end
 
-        -- Lancer le callback une seule fois quand countdown atteint zéro
         if countdown <= 0 then
             countdown = 0
             if callbackWhenZero then

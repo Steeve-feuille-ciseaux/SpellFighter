@@ -3,13 +3,22 @@ display.setDefault("minTextureFilter", "nearest")
 
 local swordsman = require("module.character.swordsman")
 local compteur = require("module.compteur")
+local lifebar = require("module.lifebar")
 local background = require("module.asset.background")
 
 -- position player controller
 swordsman.posX = display.contentWidth * 0.25
 swordsman.posY = 470
+-- Création de la barre de vie
+lifebar.create()
+lifebar.update(swordsman.life)
+
 
 swordsman.Idle()
+
+-- compteur de AA
+compteur.compteurX = 150
+compteur.compteurY = 70
 
 compteur.start(function()
     if swordsman.canAnimate() then
@@ -31,3 +40,6 @@ local function onKeyEvent(event)
 end
 
 Runtime:addEventListener("key", onKeyEvent)
+
+-- position ennemi
+

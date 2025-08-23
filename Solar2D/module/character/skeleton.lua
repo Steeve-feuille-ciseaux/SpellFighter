@@ -1,5 +1,4 @@
 local anime = require("module.anime")
-local compteur = require("module.compteur")
 
 -- Stat
 local swordsman = {}
