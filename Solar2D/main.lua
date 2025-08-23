@@ -3,7 +3,20 @@
 display.setDefault("magTextureFilter", "nearest")
 display.setDefault("minTextureFilter", "nearest")
 
--- Charger le module (adapter selon ton chemin)
--- local anime = require("module.anime") -- ou juste "anime" si le fichier est à la racine
-local swordsman = require("module.character.swordsman") -- ou juste "anime" si le fichier est à la racine
+local swordsman = require("module.character.swordsman")
 
+local playerState = ""
+
+playerState = "Idle"
+
+if playerState == "Idle" then
+    swordsman.Idle()
+elseif playerState == "AA" then
+    swordsman.AA()
+elseif playerState == "attack1" then
+    swordsman.Atk1()
+elseif playerState == "attack2" then
+    swordsman.Atk2()
+elseif playerState == "attackS" then
+    swordsman.AtkS()
+end
