@@ -1,8 +1,9 @@
 local anime = require("module.anime")
+local compteur = require("module.compteur")
 
 -- Stat
-local swordsman = {}
-swordsman.life = 300
+local skeleton = {}
+skeleton.life = 300
 
 local currentAnimation = nil
 local isAnimating = false  -- bloque interruption quand true
@@ -28,25 +29,27 @@ local function playAnimation(dossier, prefix, suffix, nbImages, scale, vitesseTo
         nbImages,
         scale,
         vitesseTotale,
-        swordsman.posX,
-        swordsman.posY,
+        skeleton.posX,
+        skeleton.posY,
         loop,
         function()
             isAnimating = false
             if onComplete then
                 onComplete()
             end
-        end
+        end,
+        true    
     )
+    
 end
 
-function swordsman.Idle()
+function skeleton.Idle()
     -- Idle peut être interrompu, donc on force isAnimating = false
     if isAnimating then return end -- Ne rien faire si une autre animation bloque
     playAnimation("sprite/swordsman/Idle/", "Idle_Swordsman", ".png", 6, 8, 600, true)
 end
 
-function swordsman.AA()
+function skeleton.AA()
     if isAnimating then return end  
     playAnimation(
         "sprite/swordsman/AA/",
@@ -57,32 +60,32 @@ function swordsman.AA()
         600,
         false,
         function()
-            swordsman.Idle()
+            skeleton.Idle()
             compteur.restart()
         end
     )
 end
 
-function swordsman.Atk1()
+function skeleton.Atk1()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/Atk1/", "Atk1_Swordsman", ".png", 10, 8, 600, false, swordsman.Idle)
+    playAnimation("sprite/swordsman/Atk1/", "Atk1_Swordsman", ".png", 10, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
-function swordsman.Atk2()
+function skeleton.Atk2()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/Atk2/", "Atk2_Swordsman", ".png", 5, 8, 600, false, swordsman.Idle)
+    playAnimation("sprite/swordsman/Atk2/", "Atk2_Swordsman", ".png", 5, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
-function swordsman.AtkS()
+function skeleton.AtkS()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/AtkS/", "AtkS_Swordsman", ".png", 12, 8, 600, false, swordsman.Idle)
+    playAnimation("sprite/swordsman/AtkS/", "AtkS_Swordsman", ".png", 12, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
-function swordsman.canAnimate()
+function skeleton.canAnimate()
     return not isAnimating
 end
 
-return swordsman
+return skeleton

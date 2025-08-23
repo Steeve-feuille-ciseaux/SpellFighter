@@ -2,9 +2,10 @@
 
 local M = {}
 
-function M.anime(dossier, prefix, suffix, nbImages, scale, vitesseTotale, posX, posY, loop, onComplete)
+function M.anime(dossier, prefix, suffix, nbImages, scale, vitesseTotale, posX, posY, loop, onComplete, flip)
     local tempsParImage = vitesseTotale / nbImages
     local frames = {}
+    local timerRef
 
     for i = 1, nbImages do
         local chemin = dossier .. prefix .. i .. suffix
@@ -14,7 +15,7 @@ function M.anime(dossier, prefix, suffix, nbImages, scale, vitesseTotale, posX, 
             img.isVisible = false
             img.x = posX
             img.y = posY
-            img.xScale = scale
+            img.xScale = flip and -scale or scale
             img.yScale = scale
             frames[#frames + 1] = img
         else
@@ -31,20 +32,28 @@ function M.anime(dossier, prefix, suffix, nbImages, scale, vitesseTotale, posX, 
     frames[index].isVisible = true
 
     local function afficherImage()
-        frames[index].isVisible = false
+        if frames[index] then
+            frames[index].isVisible = false
+        end
+
         index = index + 1
 
         if index > #frames then
             if loop then
                 index = 1
             else
-                -- Supprimer les frames
+                -- Nettoyage
+                if timerRef then
+                    timer.cancel(timerRef)
+                    timerRef = nil
+                end
+
                 for i = 1, #frames do
                     if frames[i] and frames[i].removeSelf then
                         frames[i]:removeSelf()
                     end
                 end
-                -- ✅ Callback vers Idle
+
                 if onComplete then
                     onComplete()
                 end
@@ -57,8 +66,8 @@ function M.anime(dossier, prefix, suffix, nbImages, scale, vitesseTotale, posX, 
         end
     end
 
-    local repeatCount = loop and 0 or #frames
-    timer.performWithDelay(tempsParImage, afficherImage, repeatCount)
+    local repeatCount = loop and 0 or nbImages
+    timerRef = timer.performWithDelay(tempsParImage, afficherImage, repeatCount)
 
     return frames
 end

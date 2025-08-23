@@ -13,11 +13,13 @@ v0.00.9 -> Reset compteur AA après un spell
 v0.01.0 -> Feature Complete : Animation swordsman controller
 v0.02.0 -> New Feature : décors fight
 v0.03.0 -> New Feature : Lifebar + compteur UI
+v0.03.1 -> Préparation ennemy skeleton
 
 next step : 
-Décors
-barre de vie
-barre de patience
 cd spell
+Mettre les bon sprite de skeleton
+la vie des ennemy est similaire a Octopath Travelers
+certain ennemy ont des point d'armure différent de point de défense
+
 mettre la bar de vie en gris lorsqu'il est insensible au dégât
 payer un essaie a chaque run

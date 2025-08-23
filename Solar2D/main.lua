@@ -2,6 +2,7 @@ display.setDefault("magTextureFilter", "nearest")
 display.setDefault("minTextureFilter", "nearest")
 
 local swordsman = require("module.character.swordsman")
+local skeleton = require("module.character.skeleton")
 local compteur = require("module.compteur")
 local lifebar = require("module.lifebar")
 local background = require("module.asset.background")
@@ -42,4 +43,10 @@ end
 Runtime:addEventListener("key", onKeyEvent)
 
 -- position ennemi
+
+-- position player controller
+skeleton.posX = display.contentWidth * 0.75
+skeleton.posY = 470
+
+skeleton.Idle()
 
