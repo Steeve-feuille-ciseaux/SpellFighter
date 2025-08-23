@@ -1,22 +1,25 @@
--- main.lua
-
 display.setDefault("magTextureFilter", "nearest")
 display.setDefault("minTextureFilter", "nearest")
 
 local swordsman = require("module.character.swordsman")
 
-local playerState = ""
+-- ✅ Affiche Idle dès le début
+swordsman.Idle()
 
-playerState = "Idle"
-
-if playerState == "Idle" then
-    swordsman.Idle()
-elseif playerState == "AA" then
-    swordsman.AA()
-elseif playerState == "attack1" then
-    swordsman.Atk1()
-elseif playerState == "attack2" then
-    swordsman.Atk2()
-elseif playerState == "attackS" then
-    swordsman.AtkS()
+-- Fonction pour gérer les touches clavier
+local function onKeyEvent(event)
+    if event.phase == "down" then
+        if event.keyName == "z" then
+            swordsman.Atk1()
+        elseif event.keyName == "x" then
+            swordsman.Atk2()
+        elseif event.keyName == "r" then
+            swordsman.AtkS()
+        elseif event.keyName == "a" then
+            swordsman.AA()
+        end
+    end
+    return false  
 end
+
+Runtime:addEventListener("key", onKeyEvent)

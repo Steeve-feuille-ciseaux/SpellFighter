@@ -1,9 +1,23 @@
 local anime = require("module.anime")
 
 local swordsman = {}
+local currentAnimation = nil
+
+local function clearAnimation()
+    if currentAnimation then
+        for i = 1, #currentAnimation do
+            if currentAnimation[i] and currentAnimation[i].removeSelf then
+                currentAnimation[i]:removeSelf()
+            end
+        end
+        currentAnimation = nil
+    end
+end
 
 function swordsman.Idle()
-    local Idle_Swordsman = anime.anime(
+    print("🔁 Retour à Idle")
+    clearAnimation()
+    currentAnimation = anime.anime(
         "sprite/swordsman/Idle/",
         "Idle_Swordsman",
         ".png",
@@ -11,12 +25,14 @@ function swordsman.Idle()
         8,
         600,
         display.contentCenterX,
-        display.contentCenterY
+        display.contentCenterY,
+        true
     )
 end
 
 function swordsman.AA()
-    local AA_Swordsman = anime.anime(
+    clearAnimation()
+    currentAnimation = anime.anime(
         "sprite/swordsman/AA/",
         "AA_Swordsman",
         ".png",
@@ -24,12 +40,15 @@ function swordsman.AA()
         8,
         600,
         display.contentCenterX,
-        display.contentCenterY
+        display.contentCenterY,
+        false,  -- no loop
+        swordsman.Idle  -- callback à la fin
     )
 end
 
 function swordsman.Atk1()
-    local Atk1_Swordsman = anime.anime(
+    clearAnimation()
+    currentAnimation = anime.anime(
         "sprite/swordsman/Atk1/",
         "Atk1_Swordsman",
         ".png",
@@ -37,12 +56,15 @@ function swordsman.Atk1()
         8,
         600,
         display.contentCenterX,
-        display.contentCenterY
+        display.contentCenterY,
+        false,
+        swordsman.Idle
     )
 end
 
 function swordsman.Atk2()
-    local Atk2_Swordsman = anime.anime(
+    clearAnimation()
+    currentAnimation = anime.anime(
         "sprite/swordsman/Atk2/",
         "Atk2_Swordsman",
         ".png",
@@ -50,12 +72,15 @@ function swordsman.Atk2()
         8,
         600,
         display.contentCenterX,
-        display.contentCenterY
+        display.contentCenterY,
+        false,
+        swordsman.Idle
     )
 end
 
 function swordsman.AtkS()
-    local AtkS_Swordsman = anime.anime(
+    clearAnimation()
+    currentAnimation = anime.anime(
         "sprite/swordsman/AtkS/",
         "AtkS_Swordsman",
         ".png",
@@ -63,7 +88,9 @@ function swordsman.AtkS()
         8,
         600,
         display.contentCenterX,
-        display.contentCenterY
+        display.contentCenterY,
+        false,
+        swordsman.Idle
     )
 end
 
