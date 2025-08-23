@@ -2,6 +2,7 @@ local anime = require("module.anime")
 
 local swordsman = {}
 local currentAnimation = nil
+local isAnimating = false  -- bloque interruption quand true
 
 local function clearAnimation()
     if currentAnimation then
@@ -14,84 +15,56 @@ local function clearAnimation()
     end
 end
 
-function swordsman.Idle()
-    print("🔁 Retour à Idle")
+local function playAnimation(dossier, prefix, suffix, nbImages, scale, vitesseTotale, loop, onComplete)
     clearAnimation()
+    isAnimating = not loop  -- si loop = false => animation bloquante
     currentAnimation = anime.anime(
-        "sprite/swordsman/Idle/",
-        "Idle_Swordsman",
-        ".png",
-        6,
-        8,
-        600,
+        dossier,
+        prefix,
+        suffix,
+        nbImages,
+        scale,
+        vitesseTotale,
         display.contentCenterX,
         display.contentCenterY,
-        true
+        loop,
+        function()
+            isAnimating = false
+            if onComplete then
+                onComplete()
+            end
+        end
     )
+end
+
+function swordsman.Idle()
+    -- Idle peut être interrompu, donc on force isAnimating = false
+    if isAnimating then return end -- Ne rien faire si une autre animation bloque
+    playAnimation("sprite/swordsman/Idle/", "Idle_Swordsman", ".png", 6, 8, 600, true)
 end
 
 function swordsman.AA()
-    clearAnimation()
-    currentAnimation = anime.anime(
-        "sprite/swordsman/AA/",
-        "AA_Swordsman",
-        ".png",
-        7,
-        8,
-        600,
-        display.contentCenterX,
-        display.contentCenterY,
-        false,  -- no loop
-        swordsman.Idle  -- callback à la fin
-    )
+    if isAnimating then return end
+    playAnimation("sprite/swordsman/AA/", "AA_Swordsman", ".png", 7, 8, 600, false, swordsman.Idle)
 end
 
 function swordsman.Atk1()
-    clearAnimation()
-    currentAnimation = anime.anime(
-        "sprite/swordsman/Atk1/",
-        "Atk1_Swordsman",
-        ".png",
-        10,
-        8,
-        600,
-        display.contentCenterX,
-        display.contentCenterY,
-        false,
-        swordsman.Idle
-    )
+    if isAnimating then return end
+    playAnimation("sprite/swordsman/Atk1/", "Atk1_Swordsman", ".png", 10, 8, 600, false, swordsman.Idle)
 end
 
 function swordsman.Atk2()
-    clearAnimation()
-    currentAnimation = anime.anime(
-        "sprite/swordsman/Atk2/",
-        "Atk2_Swordsman",
-        ".png",
-        5,
-        8,
-        600,
-        display.contentCenterX,
-        display.contentCenterY,
-        false,
-        swordsman.Idle
-    )
+    if isAnimating then return end
+    playAnimation("sprite/swordsman/Atk2/", "Atk2_Swordsman", ".png", 5, 8, 600, false, swordsman.Idle)
 end
 
 function swordsman.AtkS()
-    clearAnimation()
-    currentAnimation = anime.anime(
-        "sprite/swordsman/AtkS/",
-        "AtkS_Swordsman",
-        ".png",
-        12,
-        8,
-        600,
-        display.contentCenterX,
-        display.contentCenterY,
-        false,
-        swordsman.Idle
-    )
+    if isAnimating then return end
+    playAnimation("sprite/swordsman/AtkS/", "AtkS_Swordsman", ".png", 12, 8, 600, false, swordsman.Idle)
+end
+
+function swordsman.canAnimate()
+    return not isAnimating
 end
 
 return swordsman

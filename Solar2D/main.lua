@@ -2,24 +2,32 @@ display.setDefault("magTextureFilter", "nearest")
 display.setDefault("minTextureFilter", "nearest")
 
 local swordsman = require("module.character.swordsman")
+local compteur = require("module.compteur")
 
--- ✅ Affiche Idle dès le début
 swordsman.Idle()
 
--- Fonction pour gérer les touches clavier
+-- Lance le compteur avec un callback qui joue l'animation AA
+compteur.start(function()
+    if swordsman.canAnimate() then
+        swordsman.AA()
+    end
+end)
+
+-- Événements clavier
 local function onKeyEvent(event)
     if event.phase == "down" then
         if event.keyName == "z" then
             swordsman.Atk1()
-        elseif event.keyName == "x" then
+            compteur.reset() 
+        elseif event.keyName == "e" then
             swordsman.Atk2()
+            compteur.reset() 
         elseif event.keyName == "r" then
             swordsman.AtkS()
-        elseif event.keyName == "a" then
-            swordsman.AA()
+            compteur.reset() 
         end
     end
-    return false  
+    return false
 end
 
 Runtime:addEventListener("key", onKeyEvent)

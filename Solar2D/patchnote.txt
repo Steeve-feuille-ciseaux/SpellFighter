@@ -8,6 +8,7 @@ v0.00.4 -> Animation module par personnage
 v0.00.5 -> Préparation action à la commande
 v0.00.6 -> swordsman en module
 v0.00.7 -> Action par touche finalisé
+v0.00.8 -> Compteur AA
 
 next step : 
 Préparation Sprite
