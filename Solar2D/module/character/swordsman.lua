@@ -1,4 +1,5 @@
 local anime = require("module.anime")
+local compteur = require("module.compteur")
 
 local swordsman = {}
 local currentAnimation = nil
@@ -44,8 +45,20 @@ function swordsman.Idle()
 end
 
 function swordsman.AA()
-    if isAnimating then return end
-    playAnimation("sprite/swordsman/AA/", "AA_Swordsman", ".png", 7, 8, 600, false, swordsman.Idle)
+    if isAnimating then return end  
+    playAnimation(
+        "sprite/swordsman/AA/",
+        "AA_Swordsman",
+        ".png",
+        7,
+        8,
+        600,
+        false,
+        function()
+            swordsman.Idle()
+            compteur.restart()
+        end
+    )
 end
 
 function swordsman.Atk1()

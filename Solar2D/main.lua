@@ -6,25 +6,23 @@ local compteur = require("module.compteur")
 
 swordsman.Idle()
 
--- Lance le compteur avec un callback qui joue l'animation AA
 compteur.start(function()
     if swordsman.canAnimate() then
         swordsman.AA()
     end
 end)
 
--- Événements clavier
 local function onKeyEvent(event)
     if event.phase == "down" then
         if event.keyName == "z" then
             swordsman.Atk1()
-            compteur.reset() 
+            compteur.reset()
         elseif event.keyName == "e" then
             swordsman.Atk2()
-            compteur.reset() 
+            compteur.reset()
         elseif event.keyName == "r" then
             swordsman.AtkS()
-            compteur.reset() 
+            compteur.reset()
         end
     end
     return false
