@@ -3,6 +3,11 @@ display.setDefault("minTextureFilter", "nearest")
 
 local swordsman = require("module.character.swordsman")
 local compteur = require("module.compteur")
+local background = require("module.asset.background")
+
+-- position player controller
+swordsman.posX = display.contentWidth * 0.25
+swordsman.posY = 470
 
 swordsman.Idle()
 

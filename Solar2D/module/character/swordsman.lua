@@ -26,8 +26,8 @@ local function playAnimation(dossier, prefix, suffix, nbImages, scale, vitesseTo
         nbImages,
         scale,
         vitesseTotale,
-        display.contentCenterX,
-        display.contentCenterY,
+        swordsman.posX,
+        swordsman.posY,
         loop,
         function()
             isAnimating = false

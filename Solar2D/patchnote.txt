@@ -11,6 +11,7 @@ v0.00.7 -> Action par touche finalisé
 v0.00.8 -> Compteur AA
 v0.00.9 -> Reset compteur AA après un spell
 v0.01.0 -> Feature Complete : Animation swordsman controller
+v0.02.0 -> New Feature : Ajout décors fight
 
 next step : 
 Décors
