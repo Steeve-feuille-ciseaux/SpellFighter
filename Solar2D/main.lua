@@ -30,11 +30,11 @@ end)
 local function onKeyEvent(event)
     if event.phase == "down" then
         if event.keyName == "z" then
-            swordsman.Atk1()
+            swordsman.Spell1()
         elseif event.keyName == "e" then
-            swordsman.Atk2()
+            swordsman.Spell2()
         elseif event.keyName == "r" then
-            swordsman.AtkS()
+            swordsman.Spell4()
         end
     end
     return false

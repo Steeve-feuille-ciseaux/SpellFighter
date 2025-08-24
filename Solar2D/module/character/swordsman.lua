@@ -64,21 +64,21 @@ function swordsman.AA()
     )
 end
 
-function swordsman.Atk1()
+function swordsman.Spell1()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/Atk1/", "Atk1_Swordsman", ".png", 10, 8, 600, false, swordsman.Idle)
+    playAnimation("sprite/swordsman/Spell1/", "Spell1_Swordsman", ".png", 10, 8, 600, false, swordsman.Idle)
     compteur.reset()
 end
 
-function swordsman.Atk2()
+function swordsman.Spell2()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/Atk2/", "Atk2_Swordsman", ".png", 5, 8, 600, false, swordsman.Idle)
+    playAnimation("sprite/swordsman/Spell2/", "Spell2_Swordsman", ".png", 5, 8, 600, false, swordsman.Idle)
     compteur.reset()
 end
 
-function swordsman.AtkS()
+function swordsman.Spell4()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/AtkS/", "AtkS_Swordsman", ".png", 12, 8, 600, false, swordsman.Idle)
+    playAnimation("sprite/swordsman/Spell4/", "Spell4_Swordsman", ".png", 12, 8, 600, false, swordsman.Idle)
     compteur.reset()
 end
 
