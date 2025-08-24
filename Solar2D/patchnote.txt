@@ -14,6 +14,7 @@ v0.01.0 -> Feature Complete : Animation swordsman controller
 v0.02.0 -> New Feature : décors fight
 v0.03.0 -> New Feature : Lifebar + compteur UI
 v0.03.1 -> Préparation ennemy skeleton
+v0.03.2 -> Ajout AA et Atk1 Skeleton
 
 next step : 
 cd spell

@@ -46,14 +46,14 @@ end
 function skeleton.Idle()
     -- Idle peut être interrompu, donc on force isAnimating = false
     if isAnimating then return end -- Ne rien faire si une autre animation bloque
-    playAnimation("sprite/swordsman/Idle/", "Idle_Swordsman", ".png", 6, 8, 600, true)
+    playAnimation("sprite/skeleton/Idle/", "Idle_skeleton", ".png", 6, 8, 600, true)
 end
 
 function skeleton.AA()
     if isAnimating then return end  
     playAnimation(
-        "sprite/swordsman/AA/",
-        "AA_Swordsman",
+        "sprite/skeleton/AA/",
+        "AA_skeleton",
         ".png",
         7,
         8,
@@ -68,19 +68,19 @@ end
 
 function skeleton.Atk1()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/Atk1/", "Atk1_Swordsman", ".png", 10, 8, 600, false, skeleton.Idle)
+    playAnimation("sprite/skeleton/Atk1/", "Atk1_skeleton", ".png", 10, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
 function skeleton.Atk2()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/Atk2/", "Atk2_Swordsman", ".png", 5, 8, 600, false, skeleton.Idle)
+    playAnimation("sprite/skeleton/Atk2/", "Atk2_skeleton", ".png", 5, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
 function skeleton.AtkS()
     if isAnimating then return end
-    playAnimation("sprite/swordsman/AtkS/", "AtkS_Swordsman", ".png", 12, 8, 600, false, skeleton.Idle)
+    playAnimation("sprite/skeleton/AtkS/", "AtkS_skeleton", ".png", 12, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
