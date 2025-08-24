@@ -55,7 +55,7 @@ function skeleton.AA()
         "sprite/skeleton/AA/",
         "AA_skeleton",
         ".png",
-        7,
+        6,
         8,
         600,
         false,
@@ -68,19 +68,19 @@ end
 
 function skeleton.Spell1()
     if isAnimating then return end
-    playAnimation("sprite/skeleton/Spell1/", "Spell1_skeleton", ".png", 10, 8, 600, false, skeleton.Idle)
+    playAnimation("sprite/skeleton/Spell1/", "Spell1_skeleton", ".png", 7, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
 function skeleton.Spell2()
     if isAnimating then return end
-    playAnimation("sprite/skeleton/Spell2/", "Spell2_skeleton", ".png", 5, 8, 600, false, skeleton.Idle)
+    playAnimation("sprite/skeleton/Spell2/", "Spell2_skeleton", ".png", 4, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 
-function skeleton.Spell4()
+function skeleton.Stun()
     if isAnimating then return end
-    playAnimation("sprite/skeleton/Spell4/", "Spell4_skeleton", ".png", 12, 8, 600, false, skeleton.Idle)
+    playAnimation("sprite/skeleton/Stun/", "Stun_skeleton", ".png", 4, 8, 600, false, skeleton.Idle)
     compteur.reset()
 end
 

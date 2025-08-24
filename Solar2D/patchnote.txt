@@ -16,6 +16,7 @@ v0.03.0 -> New Feature : Lifebar + compteur UI
 v0.03.1 -> Préparation ennemy skeleton
 v0.03.2 -> Ajout AA et Atk1 Skeleton
 v0.03.3 -> Changement Atk1, Atk2, Atk3, AtkS par Spell1, Spell2, Spell3, Spell4, etc..
+v0.03.4 -> Ajout tous les sprites de Skeleton
 
 next step : 
 cd spell
